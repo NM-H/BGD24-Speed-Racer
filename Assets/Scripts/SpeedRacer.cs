@@ -20,14 +20,14 @@ public class SpeedRacer : MonoBehaviour
 
         if (yearMade <= 2009)
         {
-            print(carModel + "was introduced in" + yearMade + ".");
+            print(carModel + " was introduced in" + yearMade + ".");
 
             int carAge = CalculateAge(yearMade);
             print(carModel + "is" + carAge + "years old.");
         }
         else
         {
-            print(carModel + "was introduced in the 2010's.");
+            print(carModel + " was introduced in the 2010's.");
 
             print("Max Acceleration: " + maxAcceleration + "m/s²");
 
@@ -38,11 +38,11 @@ public class SpeedRacer : MonoBehaviour
         {
             if (carWeight < 1500)
             {
-                print(carModel + "weighs less than 1500 kg.");
+                print(carModel + " weighs less than 1500 kg.");
             }
             else
             {
-                print(carModel + "weighs more than 1500kg.");
+                print(carModel + " weighs more than 1500kg.");
             }
         }
 
@@ -55,15 +55,15 @@ public class SpeedRacer : MonoBehaviour
         {
             if (isCarTypeSedan)
             {
-                return carModel + "is a Sedan";
+                return carModel + " is a Sedan";
             }
             else if (hasFrontEngine)
             {
-                return carModel + "is not a sedan, but it has a front engine.";
+                return carModel + " is not a sedan, but it has a front engine.";
             }
             else
             {
-                return carModel + "is neither a sedan nor does it have a front engine.";
+                return carModel + " is neither a sedan nor does it have a front engine.";
             }
         }
     }
