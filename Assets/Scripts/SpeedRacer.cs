@@ -4,67 +4,114 @@ using UnityEngine;
 
 public class SpeedRacer : MonoBehaviour
 {
-    string carModel = "GTR R35";
-    string engineType = "V6, Twin Turbo";
-    int carWeight = 1609;
-    int yearMade = 2009;
-    float maxAcceleration = 0.98f;
-    bool isCarTypeSedan = false;
-    bool hasFrontEngine = true;
+    public string carMaker;
+    public string carModel = "GTR R35";
+    public string engineType = "V6, Twin Turbo";
+    public int carWeight = 1609;
+    public int yearMade = 2009;
+    public float maxAcceleration = 0.98f;
+    public bool isCarTypeSedan = false;
+    public bool hasFrontEngine = true;
+
+    public class Fuel
+    {
+        public int fuelLevel;
+
+        public Fuel(int amount)
+        {
+            fuelLevel = amount;
+        }
+    }
+
+    public Fuel carFuel = new Fuel(100);
 
     void Start()
     {
-        print(carModel + engineType);
+        print("The racecar is " + carModel + " made by " + carMaker + " with a " + engineType + " engine.");
 
         CheckWeight();
 
         if (yearMade <= 2009)
         {
-            print(carModel + " was introduced in" + yearMade + ".");
+            print(carModel + " was introduced in " + yearMade + ".");
 
             int carAge = CalculateAge(yearMade);
-            print(carModel + "is" + carAge + "years old.");
+            print(carModel + " is " + carAge + " years old.");
         }
         else
         {
             print(carModel + " was introduced in the 2010's.");
-
-            print("Max Acceleration: " + maxAcceleration + "m/s²");
-
-            print(CheckCharacteristics());
+            print("Max Acceleration: " + maxAcceleration + "m/s2");
         }
 
-        void CheckWeight()
+        print(CheckCharacteristics());
+
+    }
+
+    void Update()
         {
-            if (carWeight < 1500)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                print(carModel + " weighs less than 1500 kg.");
-            }
-            else
-            {
-                print(carModel + " weighs more than 1500kg.");
+                ConsumeFuel();
+                CheckFuelLevel();
             }
         }
 
-        int CalculateAge(int madeYear)
+        void ConsumeFuel()
         {
-            return (2023 - madeYear);
+            carFuel.fuelLevel = carFuel.fuelLevel - 10;
         }
 
-        string CheckCharacteristics()
+    void CheckFuelLevel()
+    {
+        switch (carFuel.fuelLevel)
         {
-            if (isCarTypeSedan)
-            {
-                return carModel + " is a Sedan";
-            }
-            else if (hasFrontEngine)
-            {
-                return carModel + " is not a sedan, but it has a front engine.";
-            }
-            else
-            {
-                return carModel + " is neither a sedan nor does it have a front engine.";
-            }
+            case 70:
+                print("fuel level is nearing two-thirds.");
+                break;
+            case 50:
+                print("fuel level is at half amount");
+                break;
+            case 10:
+                print("WARNING! Fuel level is critically low.");
+                break;
+            default:
+                print("Nothing to report.");
+                break;
         }
     }
-}
+
+        void CheckWeight()
+            {
+                if (carWeight < 1500)
+                {
+                    print(carModel + " weighs less than 1500 kg.");
+                }
+                else
+                {
+                    print(carModel + " weighs more than 1500kg.");
+                }
+            }
+
+            int CalculateAge(int madeYear)
+            {
+                return (2023 - madeYear);
+            }
+
+            string CheckCharacteristics()
+            {
+                if (isCarTypeSedan)
+                {
+                    return carModel + " is a Sedan";
+                }
+                else if (hasFrontEngine)
+                {
+                    return carModel + " is not a sedan, but it has a front engine.";
+                }
+                else
+                {
+                    return carModel + " is neither a sedan nor does it have a front engine.";
+                }
+            }
+        }
+  
